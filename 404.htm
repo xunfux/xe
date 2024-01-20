@@ -1,0 +1,50 @@
+<!--倒时间结束-->
+<script type="text/javascript">
+	function NextTime(next, cb) {
+    var t;
+    (function ft(){
+        var dif = (next.getTime() - (new Date()).getTime()) / 1000;
+        if(dif > 0){
+            t = setTimeout(ft, 1000);
+            if(cb)
+                cb(Math.floor(dif % 8888000 / 3600),  Math.floor(dif % 3600 / 60), Math.floor(dif % 60));
+        } else {
+            clearTimeout(t);
+        }
+    })();
+    return function(){
+        clearTimeout(t);
+    };
+}
+
+function lpad(num, n) {
+	var len = num.toString().length;
+	while(len < n) {
+		num = "0" + num;
+		len++;
+	}
+	return num;
+}
+
+var now  = new Date();
+var next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+new NextTime(next, function(hour, minute, second){
+  document.getElementById("timetest").innerHTML=lpad(hour, 2) + ':' + lpad(minute, 2) + ':' + lpad(second, 2);
+});
+</script>
+<!--倒时间结束-->
+<aside style=" align="center">
+<div align="right" style=" margin-right:30%; margin-top:-8px;"><img src="https://www.xesmart.com/wa2.webp" width="68"longdesc="https://wa.me/+919958697888" /></div>
+<div align="center"><img src="https://www.xesmart.com/404.webp" alt="oops!" longdesc="https://wa.me/+919958697888" /></div>
+<div align="center" style="font-size: 2vw; font-weight:900; padding:2%; padding-left:20%; color:green; width:60%;">Whoops!
+  <br />
+  You must have picked wrong door because I haven't been able to lay my eye on the page you are searching for! <br>
+<div><font size=2vw;;>Countdown To Coming Back:</font><div align="center" id="timetest" style="font-size:3vw;color: red;" ></div></div></div>
+<div align="center"> <font style="font-size: 1vw; font-weight: 10; color:#999;">&copy;2023</font></div>
+<div align="center" style="padding:30; display:none"><img src="https://smartant.co/airbuds/default_files/logo.png" width="150"  longdesc="https://smartant.co" /></div>
+<br/>
+
+<!--<div> <font style="font-size: 3vw; font-weight: 700;">Now</font> Rs.499 <font style="color: gray;font-size: 4vw; text-decoration: line-through; font-weight: 300;">( Rs.16999 )</font</div>
+<div align="center" style="background:white;float:right; position:absolute; font-size: 1vw; font-weight:100;" >COUNTDOWN TO COMING BACK</div>-->
+
+</aside>
